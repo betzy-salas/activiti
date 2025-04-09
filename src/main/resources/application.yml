@@ -1,0 +1,79 @@
+external-services:
+  services:
+    getDataFromCache:
+      name: getDataFromCache
+      url: http://localhost:8081/cache/getIncomeCache
+      method: POST
+      headers:
+        Content-Type: application/json
+      bodyTemplate: |
+        {
+          "documentType": "${DOCUMENT_TYPE}",
+          "documentNumber": "${DOCUMENT_NUMBER}"
+        }
+      responseMapping:
+        income: $.income
+
+    getDataFromMesh:
+      name: getDataFromMesh
+      url: http://localhost:8081/cache/getIncomeMesh
+      method: POST
+      headers:
+        Content-Type: application/json
+      bodyTemplate: |
+        {
+          "documentType": "${DOCUMENT_TYPE}",
+          "documentNumber": "${DOCUMENT_NUMBER}"
+        }
+      responseMapping:
+        income: $.income
+
+    getDataFromArus:
+      name: getDataFromArus
+      url: http://localhost:8081/cache/getIncomeArus
+      method: POST
+      headers:
+        Content-Type: application/json
+      bodyTemplate: |
+        {
+          "documentType": "${DOCUMENT_TYPE}",
+          "documentNumber": "${DOCUMENT_NUMBER}",
+          "name" : "${NAME}"        
+        }
+      responseMapping:
+        income: $.income
+
+    validityFromCache:
+      name: validityFromCache
+      url: http://localhost:8081/cache/validityFromCache
+      method: POST
+      headers:
+        Content-Type: application/json
+      bodyTemplate: |
+        {
+          "dateValidity": "${income.dateValidity}"
+        }
+      responseMapping:
+        validity: $.validity
+
+    validityFromMesh:
+      name: validityFromMesh
+      url: http://localhost:8081/cache/validityFromMesh
+      method: POST
+      headers:
+        Content-Type: application/json
+      bodyTemplate: |
+        {
+          "dateValidity": "${income.dateValidity}"
+        }
+      responseMapping:
+        validity: $.validity
+
+    experimentation:
+      name: experimentation
+      url: http://localhost:8081/cache/experimentation
+      method: POST
+      headers:
+        Content-Type: application/json
+      responseMapping:
+        rule: $.rule

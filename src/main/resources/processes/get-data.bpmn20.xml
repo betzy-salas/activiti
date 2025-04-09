@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:activiti="http://activiti.org/bpmn" targetNamespace="http://activiti.org/bpmn">
+    <process id="get-data" name="Proceso de consulta de ingresos" isExecutable="true">
+        <startEvent id="startEvent" name="Inicio"/>
+        <serviceTask id="obtenerIngresosCache" name="Obtener ingresos desde cache"
+                     activiti:class="com.example.activiti.processes.getdata.GetDataFromCache">
+        </serviceTask>
+        <exclusiveGateway id="gatewayIngresos" name="Validar ingresos"/>
+        <serviceTask id="consultarServicioExterno" name="Consultar datos en servicio externo"
+                     activiti:class="com.example.activiti.processes.getdata.GetDataFromExternalService"/>
+        <endEvent id="endConDatos" name="Fin con datos"/>
+        <endEvent id="endSinDatos" name="Fin sin datos"/>
+        <sequenceFlow id="flow1" sourceRef="startEvent" targetRef="obtenerIngresosCache"/>
+        <sequenceFlow id="flow2" sourceRef="obtenerIngresosCache" targetRef="gatewayIngresos"/>
+        <sequenceFlow id="flow3" sourceRef="gatewayIngresos" targetRef="endConDatos">
+            <conditionExpression xsi:type="tFormalExpression">${ingresos != null}</conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="flow4" sourceRef="gatewayIngresos" targetRef="consultarServicioExterno">
+            <conditionExpression xsi:type="tFormalExpression">${ingresos == null}</conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="flow5" sourceRef="consultarServicioExterno" targetRef="endSinDatos"/>
+    </process>
+</definitions>
