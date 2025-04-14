@@ -36,7 +36,8 @@ Ejecute el proyecto en su ambiente local a fin de que se inicie el engine de act
 
 ### 5. Desplegar el proceso buy-income
 
-En el repositorio encontrará un archivo llamado buy-income.bpmn20.xml. Este archivo corresponde con la descricpción en formato XML del proceso.
+En el repositorio encontrará un archivo llamado buy-income.bpmn20.xml. 
+Este archivo corresponde con la descricpción en formato XML del proceso.
 Este proceso debe ser desplegado dentro del engine de activiti para que pueda ser posteriormente ejecutado.
 Para  desplegar el proceso ejecute el siguiente curl (reemplace el puerto por el puerto de inicialización de su ambiente local)
 
@@ -46,7 +47,8 @@ curl --location --request POST 'http://localhost:8080/api/deploy/buy-income'
 
 ### 6. Ejecutar el proceso buy-income
 
-En el repositorio encontrará un archivo llamado buy-income.bpmn20.xml. Este archivo corresponde con la descricpción en formato XML del proceso.
+En el repositorio encontrará un archivo llamado buy-income.bpmn20.xml. 
+Este archivo corresponde con la descricpción en formato XML del proceso.
 Una vez desplegado el proceso, ya puede iniciar la ejecución del proceso (reemplace el puerto por el puerto de inicialización de su ambiente local).
 
 ``` curl
