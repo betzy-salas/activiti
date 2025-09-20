@@ -60,8 +60,3 @@ curl --location 'http://localhost:8080/api/process/start/buy-income' \
 }'
 ```
 
-### 7. Próximos pasos
-
-Desplegar procesos que se suban a un s3
-Diseñar y Desarrollar el front de activiti para Nequi
-
